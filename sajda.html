@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sajda ❤️</title>
+
+<style>
+body {
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#3a0ca3,#7209b7,#f72585);
+    overflow:hidden;
+    color:white;
+    text-align:center;
+}
+
+.container {
+    width:90%;
+    max-width:500px;
+}
+
+h1 {
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+input {
+    padding:12px;
+    border:none;
+    border-radius:30px;
+    width:70%;
+    text-align:center;
+}
+
+button {
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    margin-top:15px;
+    background:white;
+    color:#7209b7;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#countdown {
+    font-size:60px;
+    display:none;
+}
+
+#surprise {
+    display:none;
+}
+
+#slideshow {
+    width:100%;
+    max-height:420px;
+    object-fit:cover;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 0 40px rgba(255,255,255,0.4);
+    opacity:0;
+    transition:opacity 2s ease-in-out;
+}
+
+/* Love message floating */
+#loveMessage {
+    position:absolute;
+    bottom:15%;
+    width:100%;
+    font-size:22px;
+    font-weight:bold;
+    opacity:0;
+    animation: floatText 4s ease-in-out;
+    text-shadow:0 0 15px #fff;
+}
+
+@keyframes floatText {
+    0% {opacity:0; transform:translateY(30px);}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0; transform:translateY(-30px);}
+}
+
+/* Floating hearts */
+.heart {
+    position:absolute;
+    bottom:-20px;
+    animation: floatUp 8s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes floatUp {
+    0% {transform: translateY(0) scale(1);}
+    100% {transform: translateY(-100vh) scale(1.5);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="login">
+    <h1>For Sajda Joachim Mushi ❤️</h1>
+    <p>Enter password to unlock your heart</p>
+    <input type="password" id="password" placeholder="Enter Password">
+    <br>
+    <button onclick="checkPassword()">Unlock My Love</button>
+</div>
+
+<div id="countdown"></div>
+
+<div id="surprise">
+    <h1>Happy Valentine My Queen ❤️</h1>
+    <img id="slideshow" src="1.jpg">
+</div>
+
+<audio id="music" src="love.mp3"></audio>
+
+</div>
+
+<div id="loveMessage"></div>
+
+<script>
+
+var totalImages = 23;
+var currentImage = 1;
+
+var messages = [
+"❤️ Have only me in your heart ❤️",
+"💖 I will never leave you alone 💖",
+"🌹 You are my last one 🌹",
+"✨ My world begins with you ✨",
+"💘 You are my forever 💘",
+"💕 I choose you everyday 💕",
+"❤️ You are my peace ❤️",
+"💞 My heart beats for you 💞",
+"🌸 You complete me 🌸",
+"💎 My queen forever 💎",
+"💓 I belong to you 💓",
+"🌷 You are my happiness 🌷",
+"💖 I adore you 💖",
+"❤️ You are my destiny ❤️",
+"🌹 My heart is yours 🌹",
+"💘 Forever and always 💘",
+"✨ You are my safe place ✨",
+"💞 Loving you is easy 💞",
+"💓 You are my dream girl 💓",
+"🌸 I’ll protect your heart 🌸",
+"❤️ Just you and me ❤️",
+"💖 My future is with you 💖",
+"🌹 Sajda… you are my everything 🌹"
+];
+
+function checkPassword(){
+    if(document.getElementById("password").value === "SajdaLove2026"){
+        document.getElementById("login").style.display="none";
+        startCountdown();
+    } else {
+        alert("Wrong password ❤️");
+    }
+}
+
+function startCountdown(){
+    var count = 5;
+    var cd = document.getElementById("countdown");
+    cd.style.display="block";
+    cd.innerHTML = count;
+
+    var interval = setInterval(function(){
+        count--;
+        cd.innerHTML = count;
+
+        if(count <= 0){
+            clearInterval(interval);
+            cd.style.display="none";
+            showSurprise();
+        }
+    },1000);
+}
+
+function showSurprise(){
+    document.getElementById("surprise").style.display="block";
+    document.getElementById("music").play();
+    startSlideshow();
+    createHearts();
+}
+
+function startSlideshow(){
+    var img = document.getElementById("slideshow");
+    img.style.opacity = 1;
+    showMessage();
+
+    setInterval(function(){
+        img.style.opacity = 0;
+
+        setTimeout(function(){
+            currentImage++;
+            if(currentImage > totalImages){
+                currentImage = 1;
+            }
+            img.src = currentImage + ".jpg";
+            img.style.opacity = 1;
+            showMessage();
+        },1000);
+
+    },5000);
+}
+
+function showMessage(){
+    var messageBox = document.getElementById("loveMessage");
+    messageBox.innerHTML = messages[currentImage-1];
+    messageBox.style.animation = "none";
+    void messageBox.offsetWidth;
+    messageBox.style.animation = "floatText 4s ease-in-out";
+}
+
+function createHearts(){
+    setInterval(function(){
+        var heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.fontSize = (Math.random()*20 + 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(function(){
+            heart.remove();
+        },8000);
+
+    },400);
+}
+
+</script>
+
+</body>
+</html>
