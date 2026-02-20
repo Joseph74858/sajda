@@ -14,7 +14,7 @@ body {
     justify-content:center;
     align-items:center;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#3a0ca3,#7209b7,#f72585);
+    background: linear-gradient(135deg,#240046,#5a189a,#9d4edd);
     overflow:hidden;
     color:white;
     text-align:center;
@@ -26,8 +26,7 @@ body {
 }
 
 h1 {
-    font-size:26px;
-    margin-bottom:10px;
+    font-size:24px;
 }
 
 input {
@@ -44,7 +43,7 @@ button {
     border-radius:30px;
     margin-top:15px;
     background:white;
-    color:#7209b7;
+    color:#5a189a;
     font-weight:bold;
     cursor:pointer;
 }
@@ -69,7 +68,6 @@ button {
     transition:opacity 2s ease-in-out;
 }
 
-/* Love message floating */
 #loveMessage {
     position:absolute;
     bottom:15%;
@@ -77,18 +75,16 @@ button {
     font-size:22px;
     font-weight:bold;
     opacity:0;
-    animation: floatText 4s ease-in-out;
-    text-shadow:0 0 15px #fff;
+    text-shadow:0 0 20px #fff;
 }
 
 @keyframes floatText {
-    0% {opacity:0; transform:translateY(30px);}
+    0% {opacity:0; transform:translateY(40px);}
     20% {opacity:1;}
     80% {opacity:1;}
-    100% {opacity:0; transform:translateY(-30px);}
+    100% {opacity:0; transform:translateY(-40px);}
 }
 
-/* Floating hearts */
 .heart {
     position:absolute;
     bottom:-20px;
@@ -108,17 +104,17 @@ button {
 <div class="container">
 
 <div id="login">
-    <h1>For Sajda Joachim Mushi 🍇</h1>
-    <p>Enter password to unlock </p>
+    <h1>For Sajda ❤️</h1>
+    <p>Please forgive me… enter password</p>
     <input type="password" id="password" placeholder="Enter Password">
     <br>
-    <button onclick="checkPassword()">Unlock My Love</button>
+    <button onclick="checkPassword()">Open My Heart</button>
 </div>
 
 <div id="countdown"></div>
 
 <div id="surprise">
-    <h1>NAKUPENDA SANA MKE WANGU ❤️</h1>
+    <h1>I Am Truly Sorry ❤️</h1>
     <img id="slideshow" src="1.jpg">
 </div>
 
@@ -130,33 +126,50 @@ button {
 
 <script>
 
-var totalImages = 20;
+var totalImages = 40;
 var currentImage = 1;
 
 var messages = [
-"❤️ Have only me in your heart ❤️",
-"💖 I will never leave you alone 💖",
-"🌹 You are my last one 🌹",
-"✨ My world begins with you ✨",
-"💘 You are my forever 💘",
-"💕 I choose you everyday 💕",
-"❤️ You are my peace ❤️",
-"💞 My heart beats for you 💞",
-"🌸 You complete me 🌸",
-"💎 My queen forever 💎",
-"💓 I belong to you 💓",
-"🌷 You are my happiness 🌷",
-"💖 I adore you 💖",
-"❤️ You are my destiny ❤️",
-"🌹 My heart is yours 🌹",
-"💘 Forever and always 💘",
-"✨ You are my safe place ✨",
-"💞 Loving you is easy 💞",
-"💓 You are my dream girl 💓",
-"🌸 I’ll protect your heart 🌸",
-"❤️ Just you and me ❤️",
-"💖 My future is with you 💖",
-"🌹 Sajda… you are my everything 🌹"
+"💔 I’m sorry for hurting you…",
+"🥺 I never meant to make you cry…",
+"❤️ Remember our first laugh together?",
+"🌅 Remember the day we couldn’t stop smiling?",
+"💞 Remember when we promised forever?",
+"🌹 I still choose you every day.",
+"✨ You are still my peace.",
+"💖 I miss how we used to talk for hours.",
+"🌸 I miss your soft smile.",
+"💎 You are the best thing in my life.",
+"💓 I was wrong… and I admit it.",
+"🥺 I should have listened more.",
+"❤️ You deserve better from me.",
+"🌹 Remember our late night calls?",
+"💘 Remember when you said I’m your safe place?",
+"✨ I want to be that again.",
+"💞 I don’t want to lose us.",
+"🌸 You are not just my love…",
+"💖 You are my home.",
+"💎 I miss us.",
+"💓 I miss your laugh.",
+"🌹 I miss the way you looked at me.",
+"💘 I still love you deeply.",
+"✨ I still want our future.",
+"💞 I want to fix everything.",
+"🥺 Please forgive me.",
+"❤️ Let’s rebuild what we had.",
+"🌅 Let’s go back to our happiness.",
+"💖 I promise to do better.",
+"🌸 I promise to protect your heart.",
+"💎 I promise to respect you.",
+"💞 I promise to understand you.",
+"💓 I promise to fight for us.",
+"❤️ I choose you again.",
+"🌹 And again.",
+"💘 And again.",
+"✨ No matter what.",
+"💞 You are my forever.",
+"💖 You are my only one.",
+"❤️ I love you more than my pride."
 ];
 
 function checkPassword(){
@@ -234,7 +247,6 @@ function createHearts(){
         setTimeout(function(){
             heart.remove();
         },8000);
-
     },400);
 }
 
