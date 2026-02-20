@@ -25,10 +25,6 @@ body {
     max-width:500px;
 }
 
-h1 {
-    font-size:24px;
-}
-
 input {
     padding:12px;
     border:none;
@@ -65,7 +61,7 @@ button {
     margin-top:20px;
     box-shadow:0 0 40px rgba(255,255,255,0.4);
     opacity:0;
-    transition:opacity 2s ease-in-out;
+    transition:opacity 1.5s ease-in-out;
 }
 
 #loveMessage {
@@ -105,7 +101,7 @@ button {
 
 <div id="login">
     <h1>For Sajda ❤️</h1>
-    <p>Please forgive me… enter password</p>
+    <p><b>Unlock by password:</b> I love you Sajda</p>
     <input type="password" id="password" placeholder="Enter Password">
     <br>
     <button onclick="checkPassword()">Open My Heart</button>
@@ -212,6 +208,7 @@ function startSlideshow(){
     showMessage();
 
     setInterval(function(){
+
         img.style.opacity = 0;
 
         setTimeout(function(){
@@ -219,10 +216,12 @@ function startSlideshow(){
             if(currentImage > totalImages){
                 currentImage = 1;
             }
-            img.src = currentImage + ".jpg";
+
+            img.src = currentImage + ".jpg?" + new Date().getTime();
             img.style.opacity = 1;
             showMessage();
-        },1000);
+
+        },1500);
 
     },5000);
 }
