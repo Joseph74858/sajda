@@ -70,7 +70,6 @@ button {
     width:100%;
     font-size:22px;
     font-weight:bold;
-    opacity:0;
     text-shadow:0 0 20px #fff;
 }
 
@@ -111,7 +110,7 @@ button {
 
 <div id="surprise">
     <h1>I Am Truly Sorry ❤️</h1>
-    <img id="slideshow" src="1.jpg">
+    <img id="slideshow" src="">
 </div>
 
 <audio id="music" src="love.mp3"></audio>
@@ -123,7 +122,24 @@ button {
 <script>
 
 var totalImages = 40;
-var currentImage = 1;
+var images = [];
+
+// Create array 1-40
+for (let i = 1; i <= totalImages; i++) {
+    images.push(i);
+}
+
+// Shuffle function
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+shuffle(images);
+
+var currentIndex = 0;
 
 var messages = [
 "💔 I’m sorry for hurting you…",
@@ -204,31 +220,36 @@ function showSurprise(){
 
 function startSlideshow(){
     var img = document.getElementById("slideshow");
-    img.style.opacity = 1;
-    showMessage();
+
+    changeImage();
 
     setInterval(function(){
-
         img.style.opacity = 0;
 
         setTimeout(function(){
-            currentImage++;
-            if(currentImage > totalImages){
-                currentImage = 1;
-            }
-
-            img.src = currentImage + ".jpg?" + new Date().getTime();
+            changeImage();
             img.style.opacity = 1;
-            showMessage();
-
         },1500);
 
     },5000);
 }
 
-function showMessage(){
+function changeImage(){
+    if(currentIndex >= images.length){
+        shuffle(images);
+        currentIndex = 0;
+    }
+
+    var img = document.getElementById("slideshow");
+    var imageNumber = images[currentIndex];
+    img.src = imageNumber + ".jpg";
+    showMessage(currentIndex);
+    currentIndex++;
+}
+
+function showMessage(index){
     var messageBox = document.getElementById("loveMessage");
-    messageBox.innerHTML = messages[currentImage-1];
+    messageBox.innerHTML = messages[index % messages.length];
     messageBox.style.animation = "none";
     void messageBox.offsetWidth;
     messageBox.style.animation = "floatText 4s ease-in-out";
